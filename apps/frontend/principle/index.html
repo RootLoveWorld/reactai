@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Principle</title>
+    <style>
+        #count{
+            font-size:48px;
+            color:purple;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="count"></div>
+    <p>
+
+React 未直接采用 requestIdleCallback 和 scheduler.postTask 主要基于以下原因：
+
+一、requestIdleCallback 的局限性
+‌兼容性问题‌
+Safari 及 Android 4.0 以下 WebView 等环境不支持该 API，而 React 需要广泛的浏览器兼容性
+
+‌执行时机不可靠‌
+调用频率低（约每秒 20 次），且依赖浏览器空闲时段，可能导致任务延迟或中断，无法满足 React 对更新一致性的要求
+
+‌优先级控制不足‌
+仅支持单一低优先级任务，而 React Fiber 架构需要细粒度的任务分级（如用户交互等高优先级任务需即时响应）
+
+‌潜在布局抖动‌
+回调执行在渲染帧之后，可能触发重排/重绘，影响性能，特别是在动画和滚动场景中
+
+
+二、scheduler.postTask 的适用性不足
+‌API 成熟度问题‌
+尽管 scheduler 提供了更精细的任务优先级控制，但其作为较新的 API，兼容性和稳定性尚未达到 React 的生产要求
+
+‌与 Fiber 架构的调度策略冲突‌
+React 的调度器（Scheduler）已基于 MessageChannel 实现了自定义时间切片和任务中断恢复机制，与原生 API 的设计目标存在差异
+
+三、React 的替代方案
+‌基于 MessageChannel 的自定义调度器‌
+通过宏任务实现异步调度，避免阻塞主线程，同时保证任务执行的及时性
+
+‌Fiber 架构的优先级调度‌
+将任务拆分为小单元，根据优先级动态调整执行顺序（如 useTransition 标记低优先级更新）
+
+‌时间切片（Time Slicing）‌
+手动控制任务分片执行，确保高优先级任务可抢占式执行，提升用户体验
+
+综上，React 通过自主实现的调度系统，解决了原生 API 在兼容性、优先级控制和执行稳定性上的缺陷，更适配其声明式 UI 更新的需求
+
+
+
+    </p>
+    <script src="./react.js"></script>
+  </body>
+</html>
