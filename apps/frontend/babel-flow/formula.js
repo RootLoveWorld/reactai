@@ -141,3 +141,201 @@ console.log('Test 4 - Function with spaces:');
 console.log('Input: "pow( x , 2 ) + sqrt( y )"');
 console.log('Output:', tokenize("pow( x , 2 ) + sqrt( y )"));
 console.log();
+
+// 语法分析 parser 将词法单元转换成抽象语法树
+function parse(tokens) {
+    let current = 0;
+
+    // Helper function to peek at current token
+    function peek() {
+        return tokens[current];
+    }
+
+    // Helper function to consume current token
+    function consume(expectedType = null) {
+        if (expectedType && peek()?.type !== expectedType) {
+            throw new Error(`Expected ${expectedType}, got ${peek()?.type || 'EOF'}`);
+        }
+        return tokens[current++];
+    }
+
+    // Parse primary expressions (numbers, identifiers, parentheses, function calls)
+    function parsePrimary() {
+        const token = peek();
+
+        if (!token) {
+            throw new Error('Unexpected end of expression');
+        }
+
+        if (token.type === 'Number') {
+            consume();
+            return {
+                type: 'Literal',
+                value: token.value
+            };
+        }
+
+        if (token.type === 'Identifier') {
+            consume();
+            return {
+                type: 'Identifier',
+                name: token.value
+            };
+        }
+
+        if (token.type === 'Function') {
+            return parseFunctionCall();
+        }
+
+        if (token.type === 'LeftParen') {
+            consume('LeftParen');
+            const expr = parseExpression();
+            consume('RightParen');
+            return expr;
+        }
+
+        throw new Error(`Unexpected token: ${token.type}`);
+    }
+
+    // Parse function calls
+    function parseFunctionCall() {
+        const functionToken = consume('Function');
+        consume('LeftParen');
+        
+        const args = [];
+        
+        // Handle empty parameter list
+        if (peek()?.type === 'RightParen') {
+            consume('RightParen');
+            return {
+                type: 'CallExpression',
+                callee: {
+                    type: 'Identifier',
+                    name: functionToken.value
+                },
+                arguments: args
+            };
+        }
+        
+        // Parse arguments
+        do {
+            args.push(parseExpression());
+            if (peek()?.type === 'Comma') {
+                consume('Comma');
+            } else {
+                break;
+            }
+        } while (peek()?.type !== 'RightParen');
+        
+        consume('RightParen');
+        
+        return {
+            type: 'CallExpression',
+            callee: {
+                type: 'Identifier',
+                name: functionToken.value
+            },
+            arguments: args
+        };
+    }
+
+    // Parse multiplication and division (higher precedence)
+    function parseMultiplicative() {
+        let left = parsePrimary();
+        
+        while (peek()?.type === 'Operator' && /[*/]/.test(peek().value)) {
+            const operator = consume('Operator');
+            const right = parsePrimary();
+            
+            left = {
+                type: 'BinaryExpression',
+                operator: operator.value,
+                left: left,
+                right: right
+            };
+        }
+        
+        return left;
+    }
+
+    // Parse addition and subtraction (lower precedence)
+    function parseAdditive() {
+        let left = parseMultiplicative();
+        
+        while (peek()?.type === 'Operator' && /[+-]/.test(peek().value)) {
+            const operator = consume('Operator');
+            const right = parseMultiplicative();
+            
+            left = {
+                type: 'BinaryExpression',
+                operator: operator.value,
+                left: left,
+                right: right
+            };
+        }
+        
+        return left;
+    }
+
+    // Parse full expression (entry point)
+    function parseExpression() {
+        return parseAdditive();
+    }
+
+    // Parse the entire token stream
+    const ast = parseExpression();
+    
+    if (current < tokens.length) {
+        throw new Error(`Unexpected token after expression: ${peek().type}`);
+    }
+    
+    return ast;
+}
+
+// Helper function to pretty print AST
+function printAST(node, indent = 0) {
+    const spaces = '  '.repeat(indent);
+    
+    switch (node.type) {
+        case 'Literal':
+            return `${spaces}Literal: ${node.value}`;
+        case 'Identifier':
+            return `${spaces}Identifier: ${node.name}`;
+        case 'BinaryExpression':
+            return `${spaces}BinaryExpression (${node.operator}):\n` +
+                   `${printAST(node.left, indent + 1)}\n` +
+                   `${printAST(node.right, indent + 1)}`;
+        case 'CallExpression':
+            const args = node.arguments.map(arg => printAST(arg, indent + 1)).join('\n');
+            return `${spaces}CallExpression:\n` +
+                   `${spaces}  callee: ${node.callee.name}\n` +
+                   `${spaces}  arguments:\n${args}`;
+        default:
+            return `${spaces}Unknown: ${node.type}`;
+    }
+}
+
+// Test parser with various expressions
+console.log('\n=== Testing Parser (Tokens to AST) ===\n');
+
+function testParser(expression) {
+    console.log(`Expression: "${expression}"`);
+    try {
+        const tokens = tokenize(expression);
+        console.log('Tokens:', tokens);
+        
+        const ast = parse(tokens);
+        console.log('AST:');
+        console.log(printAST(ast));
+        console.log('\nAST Object:', JSON.stringify(ast, null, 2));
+    } catch (error) {
+        console.error('Parser Error:', error.message);
+    }
+    console.log('\n' + '='.repeat(50) + '\n');
+}
+
+// Test cases
+testParser("Multiply(Divide(Add(3,1),2),3)");
+testParser("a + b * 2");
+testParser("pow(x, 2) + sqrt(y)");
+testParser("(a + b) * c");
