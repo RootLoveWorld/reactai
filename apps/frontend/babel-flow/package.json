@@ -6,6 +6,7 @@
   "type":"module",
   "scripts": {
     "build":"node compile.js",
+    "formula":"node formula.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
