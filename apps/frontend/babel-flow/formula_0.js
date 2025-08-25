@@ -115,8 +115,34 @@ function tokenize(expression) {
 }
 
 
+// Test the enhanced tokenize function
+console.log('=== Testing Enhanced Tokenize Function ===\n');
 
-// 2. 语法分析 parser 将词法单元转换成抽象语法树
+// Test 1: Original example
+console.log('Test 1 - Function calls with nested expressions:');
+console.log('Input: "Multiply(Divide(Add(3,1),2),3)"');
+console.log('Output:', tokenize("Multiply(Divide(Add(3,1),2),3)"));
+console.log();
+
+// Test 2: Decimal numbers
+console.log('Test 2 - Decimal numbers:');
+console.log('Input: "Add(3.14, 2.5)"');
+console.log('Output:', tokenize("Add(3.14, 2.5)"));
+console.log();
+
+// Test 3: Simple arithmetic expression
+console.log('Test 3 - Simple arithmetic:');
+console.log('Input: "a + b * 2.5 - c"');
+console.log('Output:', tokenize("a + b * 2.5 - c"));
+console.log();
+
+// Test 4: Function with multiple parameters
+console.log('Test 4 - Function with spaces:');
+console.log('Input: "pow( x , 2 ) + sqrt( y )"');
+console.log('Output:', tokenize("pow( x , 2 ) + sqrt( y )"));
+console.log();
+
+// 语法分析 parser 将词法单元转换成抽象语法树
 function parse(tokens) {
     let current = 0;
 
@@ -289,170 +315,27 @@ function printAST(node, indent = 0) {
     }
 }
 
-// 3. 执行器 Executor - 遍历AST并执行计算
-function execute(ast, context = {}) {
-    switch (ast.type) {
-        case 'Literal':
-            return ast.value;
-            
-        case 'Identifier':
-            if (context.hasOwnProperty(ast.name)) {
-                return context[ast.name];
-            }
-            throw new Error(`Undefined variable: ${ast.name}`);
-            
-        case 'BinaryExpression':
-            return executeBinaryExpression(ast, context);
-            
-        case 'CallExpression':
-            return executeCallExpression(ast, context);
-            
-        default:
-            throw new Error(`Unknown AST node type: ${ast.type}`);
-    }
-}
+// Test parser with various expressions
+console.log('\n=== Testing Parser (Tokens to AST) ===\n');
 
-// Execute binary expressions (+, -, *, /)
-function executeBinaryExpression(ast, context) {
-    const left = execute(ast.left, context);
-    const right = execute(ast.right, context);
-    
-    switch (ast.operator) {
-        case '+':
-            return left + right;
-        case '-':
-            return left - right;
-        case '*':
-            return left * right;
-        case '/':
-            if (right === 0) {
-                throw new Error('Division by zero');
-            }
-            return left / right;
-        default:
-            throw new Error(`Unknown operator: ${ast.operator}`);
-    }
-}
-
-// Execute function calls
-function executeCallExpression(ast, context) {
-    const functionName = ast.callee.name;
-    const args = ast.arguments.map(arg => execute(arg, context));
-    
-    // Built-in mathematical functions
-    const builtinFunctions = {
-        // Basic arithmetic functions
-        Add: (a, b) => a + b,
-        Subtract: (a, b) => a - b,
-        Multiply: (a, b) => a * b,
-        Divide: (a, b) => {
-            if (b === 0) throw new Error('Division by zero');
-            return a / b;
-        },
-        
-        // Advanced math functions
-        pow: (base, exponent) => Math.pow(base, exponent),
-        sqrt: (x) => {
-            if (x < 0) throw new Error('Square root of negative number');
-            return Math.sqrt(x);
-        },
-        abs: (x) => Math.abs(x),
-        sin: (x) => Math.sin(x),
-        cos: (x) => Math.cos(x),
-        tan: (x) => Math.tan(x),
-        log: (x) => {
-            if (x <= 0) throw new Error('Logarithm of non-positive number');
-            return Math.log(x);
-        },
-        exp: (x) => Math.exp(x),
-        floor: (x) => Math.floor(x),
-        ceil: (x) => Math.ceil(x),
-        round: (x) => Math.round(x),
-        
-        // Multi-argument functions
-        max: (...args) => Math.max(...args),
-        min: (...args) => Math.min(...args),
-        sum: (...args) => args.reduce((acc, val) => acc + val, 0),
-        avg: (...args) => args.reduce((acc, val) => acc + val, 0) / args.length
-    };
-    
-    // Check for user-defined functions in context
-    if (context.functions && context.functions[functionName]) {
-        return context.functions[functionName](...args);
-    }
-    
-    // Check for built-in functions
-    if (builtinFunctions[functionName]) {
-        return builtinFunctions[functionName](...args);
-    }
-    
-    throw new Error(`Unknown function: ${functionName}`);
-}
-
-
-// 插件化思想，可以添加新的函数
-
-
-// Helper function to evaluate expressions with variables
-function evaluate(expression, variables = {}, functions = {}) {
-    const context = { ...variables, functions };
-    
+function testParser(expression) {
+    console.log(`Expression: "${expression}"`);
     try {
         const tokens = tokenize(expression);
+        console.log('Tokens:', tokens);
+        
         const ast = parse(tokens);
-        const result = execute(ast, context);
-        return result;
+        console.log('AST:');
+        console.log(printAST(ast));
+        console.log('\nAST Object:', JSON.stringify(ast, null, 2));
     } catch (error) {
-        throw new Error(`Evaluation error: ${error.message}`);
+        console.error('Parser Error:', error.message);
     }
+    console.log('\n' + '='.repeat(50) + '\n');
 }
 
-// Test the complete interpreter system
-console.log('\n=== Testing Complete Interpreter System ===\n');
-
-function testInterpreter(expression, variables = {}, functions = {}) {
-    console.log(`Expression: "${expression}"`);
-    if (Object.keys(variables).length > 0) {
-        console.log('Variables:', variables);
-    }
-    if (Object.keys(functions).length > 0) {
-        console.log('Custom Functions:', Object.keys(functions));
-    }
-    
-    try {
-        const result = evaluate(expression, variables, functions);
-        console.log(`Result: ${result}`);
-    } catch (error) {
-        console.error('Error:', error.message);
-    }
-    console.log('\n' + '-'.repeat(40) + '\n');
-}
-
-// Test cases for the complete system
-console.log('=== Basic Arithmetic ===');
-testInterpreter("3 + 4 * 2");
-testInterpreter("(10 - 6) / 2");
-testInterpreter("2 * 3 + 4 * 5");
-
-console.log('=== Function Calls ===');
-testInterpreter("Multiply(Divide(Add(3,1),2),3)");
-testInterpreter("sqrt(16) + pow(2, 3)");
-testInterpreter("max(10, 20, 5) - min(3, 7, 1)");
-
-console.log('=== Variables ===');
-testInterpreter("x + y * 2", { x: 5, y: 3 });
-testInterpreter("pow(a, 2) + sqrt(b)", { a: 3, b: 9 });
-
-console.log('=== Custom Functions ===');
-const customFunctions = {
-    double: (x) => x * 2,
-    triple: (x) => x * 3,
-    hypotenuse: (a, b) => Math.sqrt(a * a + b * b)
-};
-testInterpreter("double(5) + triple(3)", {}, customFunctions);
-testInterpreter("hypotenuse(3, 4)", {}, customFunctions);
-
-console.log('=== Complex Expressions ===');
-testInterpreter("(a + b) * c / d", { a: 2, b: 3, c: 4, d: 2 });
-testInterpreter("sin(3.14159/2) + cos(0)");
-testInterpreter("log(exp(1)) + sqrt(pow(4, 2))");
+// Test cases
+testParser("Multiply(Divide(Add(3,1),2),3)");
+testParser("a + b * 2");
+testParser("pow(x, 2) + sqrt(y)");
+testParser("(a + b) * c");
