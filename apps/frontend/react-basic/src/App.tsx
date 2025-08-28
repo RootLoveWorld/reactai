@@ -6,6 +6,7 @@ import UncontrolledPage from './pages/UncontrolledPage'
 import StateLiftingPage from './pages/StateLiftingPage'
 import ContextPage from './pages/ContextPage'
 import UseReducerPage from './pages/UseReducerPage'
+import UseEffectPage from './pages/UseEffectPage'
 import RefsPage from './pages/RefsPage'
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         return <ContextPage />;
       case 'useReducer':
         return <UseReducerPage />;
+      case 'useEffect':
+        return <UseEffectPage />;
       case 'refs':
         return <RefsPage />;
       case 'home':

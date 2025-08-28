@@ -19,8 +19,9 @@ export * from './state-lifting';
 export * from './context';
 export * from './reducer';
 
-// Advanced Patterns
+// React Hooks
 // ============================================================================
+export * from './effects';
 export * from './refs';
 
 // ============================================================================
@@ -58,6 +59,16 @@ export {
   SimpleCounter,
   TodoList
 } from './reducer';
+
+// Effect Hooks
+export {
+  UseEffectExample,
+  BasicEffectExample,
+  DependencyArrayExample,
+  CleanupExample,
+  ConditionalEffectExample,
+  DataFetchingExample
+} from './effects';
 
 // Advanced Hooks
 export {

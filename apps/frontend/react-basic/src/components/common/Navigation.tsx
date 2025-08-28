@@ -13,6 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
     { id: 'state-lifting', label: '🚀 状态提升', description: 'State Lifting' },
     { id: 'context', label: '🌐 Context API', description: 'Global State Management' },
     { id: 'useReducer', label: '🎛️ useReducer', description: 'Complex State Logic' },
+    { id: 'useEffect', label: '🔄 useEffect', description: 'Side Effects & Lifecycle' },
     { id: 'refs', label: '🔗 Refs', description: 'DOM References' }
   ];
 

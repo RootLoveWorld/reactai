@@ -30,6 +30,7 @@ const HomePage: React.FC = () => {
           <li><strong>状态提升 (State Lifting)</strong> - 掌握组件间共享状态的最佳实践</li>
           <li><strong>Context API</strong> - 学习全局状态管理和跨组件数据共享</li>
           <li><strong>useReducer Hook</strong> - 掌握复杂状态逻辑的管理方式</li>
+          <li><strong>useEffect Hook</strong> - 学习副作用管理和组件生命周期</li>
           <li><strong>Refs</strong> - 学习 DOM 引用和命令式操作技巧</li>
         </ul>
       </div>
@@ -107,6 +108,20 @@ const HomePage: React.FC = () => {
           <h4 style={{ color: '#dc3545', margin: '0 0 10px 0' }}>useReducer</h4>
           <p style={{ color: '#666', margin: 0, fontSize: '14px' }}>
             复杂状态管理 Hook，使用 Redux 模式处理复杂的状态逻辑
+          </p>
+        </div>
+
+        <div style={{
+          background: 'white',
+          border: '2px solid #20c997',
+          borderRadius: '8px',
+          padding: '20px',
+          textAlign: 'center'
+        }}>
+          <div style={{ fontSize: '48px', marginBottom: '15px' }}>🔄</div>
+          <h4 style={{ color: '#20c997', margin: '0 0 10px 0' }}>useEffect</h4>
+          <p style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+            副作用管理 Hook，处理数据获取、订阅和清理操作
           </p>
         </div>
 

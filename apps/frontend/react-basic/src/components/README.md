@@ -32,6 +32,14 @@ src/components/
 │   ├── SimpleCounter.tsx
 │   ├── TodoList.tsx
 │   └── index.ts
+├── effects/               # useEffect examples
+│   ├── UseEffectExample.tsx
+│   ├── BasicEffectExample.tsx
+│   ├── DependencyArrayExample.tsx
+│   ├── CleanupExample.tsx
+│   ├── ConditionalEffectExample.tsx
+│   ├── DataFetchingExample.tsx
+│   └── index.ts
 ├── refs/                  # React Refs examples
 │   ├── RefsExample.tsx
 │   ├── BasicRefExamples.tsx
@@ -81,9 +89,10 @@ import UncontrolledComponent from '../components/UncontrolledComponent';
 ### Intermediate Level
 4. **context/** - Global state management
 5. **reducer/** - Complex state logic
+6. **effects/** - Side effects and lifecycle management
 
 ### Advanced Level
-6. **refs/** - DOM manipulation and imperative APIs
+7. **refs/** - DOM manipulation and imperative APIs
 
 ## 🔧 Component Breakdown Examples
 
