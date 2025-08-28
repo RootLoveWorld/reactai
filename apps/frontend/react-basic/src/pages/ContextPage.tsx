@@ -1,5 +1,5 @@
 import React from 'react';
-import ContextExample from '../components/ContextExample';
+import { ContextExample } from '../components';
 
 const ContextPage: React.FC = () => {
   return (

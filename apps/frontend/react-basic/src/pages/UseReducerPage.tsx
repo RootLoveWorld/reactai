@@ -1,5 +1,5 @@
 import React from 'react';
-import UseReducerExample from '../components/UseReducerExample';
+import { UseReducerExample } from '../components';
 
 const UseReducerPage: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import BasicRefExamples from '../components/BasicRefExamples';
-import ForwardRefExamples from '../components/ForwardRefExamples';
+import BasicRefExamples from './BasicRefExamples';
+import ForwardRefExamples from './ForwardRefExamples';
 
 const RefsExample: React.FC = () => {
   return (

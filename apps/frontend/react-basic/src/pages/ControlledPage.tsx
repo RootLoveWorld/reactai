@@ -1,5 +1,5 @@
 import React from 'react';
-import ControlledComponent from '../components/ControlledComponent';
+import { ControlledComponent } from '../components';
 
 const ControlledPage: React.FC = () => {
   return (

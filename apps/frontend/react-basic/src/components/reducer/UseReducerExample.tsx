@@ -1,7 +1,7 @@
 import React from 'react';
-import SimpleCounter from '../components/SimpleCounter';
-import TodoList from '../components/TodoList';
-import UseStateVsUseReducer from '../components/UseStateVsUseReducer';
+import SimpleCounter from '../SimpleCounter';
+import TodoList from '../TodoList';
+import UseStateVsUseReducer from '../UseStateVsUseReducer';
 
 const UseReducerExample: React.FC = () => {
   return (

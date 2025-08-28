@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppContext, Theme } from '../contexts/AppContext';
+import { useAppContext, Theme } from '../../contexts/AppContext';
 
 const SettingsPanel: React.FC = () => {
   const { 

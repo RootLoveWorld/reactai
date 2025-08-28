@@ -1,5 +1,5 @@
 import React from 'react';
-import UncontrolledComponent from '../components/UncontrolledComponent';
+import { UncontrolledComponent } from '../components';
 
 const UncontrolledPage: React.FC = () => {
   return (

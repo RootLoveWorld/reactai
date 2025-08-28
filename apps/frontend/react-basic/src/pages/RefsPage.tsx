@@ -1,5 +1,5 @@
 import React from 'react';
-import RefsExample from '../components/RefsExample';
+import { RefsExample } from '../components';
 
 const RefsPage: React.FC = () => {
   return (

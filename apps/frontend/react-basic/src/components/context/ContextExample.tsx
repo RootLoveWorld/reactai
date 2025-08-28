@@ -1,8 +1,8 @@
 import React from 'react';
-import { AppContextProvider } from '../contexts/AppContext';
-import SettingsPanel from '../components/SettingsPanel';
-import ThemeDisplay from '../components/ThemeDisplay';
-import UserProfile from '../components/UserProfile';
+import { AppContextProvider } from '../../contexts/AppContext';
+import SettingsPanel from './SettingsPanel';
+import ThemeDisplay from './ThemeDisplay';
+import UserProfile from './UserProfile';
 
 const ContextExample: React.FC = () => {
   return (

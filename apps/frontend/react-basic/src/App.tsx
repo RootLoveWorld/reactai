@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Navigation from './components/Navigation'
+import { Navigation } from './components'
 import HomePage from './pages/HomePage'
 import ControlledPage from './pages/ControlledPage'
 import UncontrolledPage from './pages/UncontrolledPage'

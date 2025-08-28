@@ -1,5 +1,5 @@
 import React from 'react';
-import StateLiftingExample from '../components/StateLiftingExample';
+import { StateLiftingExample } from '../components';
 
 const StateLiftingPage: React.FC = () => {
   return (
