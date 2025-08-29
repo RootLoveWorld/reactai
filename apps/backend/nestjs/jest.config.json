@@ -1,0 +1,61 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverageFrom": [
+    "**/*.(t|j)s",
+    "!**/*.spec.ts",
+    "!**/*.interface.ts",
+    "!**/node_modules/**",
+    "!**/dist/**"
+  ],
+  "coverageDirectory": "./coverage",
+  "coverageReporters": ["text", "lcov", "html"],
+  "moduleNameMapping": {
+    "^@shared/(.*)$": "<rootDir>/libs/shared/src/$1",
+    "^@shared$": "<rootDir>/libs/shared/src"
+  },
+  "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
+  "testTimeout": 30000,
+  "projects": [
+    {
+      "displayName": "API Gateway",
+      "testMatch": ["<rootDir>/apps/api-gateway/**/*.spec.ts"],
+      "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+      }
+    },
+    {
+      "displayName": "Auth Service",
+      "testMatch": ["<rootDir>/apps/auth-service/**/*.spec.ts"],
+      "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+      }
+    },
+    {
+      "displayName": "User Service",
+      "testMatch": ["<rootDir>/apps/user-service/**/*.spec.ts"],
+      "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+      }
+    },
+    {
+      "displayName": "Chat Service",
+      "testMatch": ["<rootDir>/apps/chat-service/**/*.spec.ts"],
+      "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+      }
+    },
+    {
+      "displayName": "Shared Library",
+      "testMatch": ["<rootDir>/libs/shared/**/*.spec.ts"],
+      "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+      }
+    }
+  ]
+}
