@@ -23,6 +23,15 @@ const RefsPage: React.FC = () => {
           <li>在函数组件间传递 DOM 引用</li>
         </ul>
 
+        <h4>⚡ 本页包含的示例：</h4>
+        <ul>
+          <li>✅ <strong>基础 useRef 使用：</strong> DOM 操作和可变值存储</li>
+          <li>✅ <strong>forwardRef 传递：</strong> 组件间 ref 引用传递</li>
+          <li>🧠 <strong>useRef 底层原理：</strong> 深入理解 ref 的内部实现机制</li>
+          <li>⚔️ <strong>useState vs useRef：</strong> 详细对比两种状态管理方式</li>
+          <li>🔄 <strong>渲染周期演示：</strong> ref 在组件生命周期中的行为</li>
+        </ul>
+
         <h4>⚡ 三种主要的 Ref 模式：</h4>
         <ul>
           <li>✅ <strong>useRef：</strong> 在函数组件中创建和使用 refs</li>

@@ -8,6 +8,7 @@ import ContextPage from './pages/ContextPage'
 import UseReducerPage from './pages/UseReducerPage'
 import UseEffectPage from './pages/UseEffectPage'
 import RefsPage from './pages/RefsPage'
+import ConcurrentPage from './pages/ConcurrentPage'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -28,6 +29,8 @@ function App() {
         return <UseEffectPage />;
       case 'refs':
         return <RefsPage />;
+      case 'concurrent':
+        return <ConcurrentPage />;
       case 'home':
       default:
         return <HomePage />;

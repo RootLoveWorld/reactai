@@ -14,7 +14,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
     { id: 'context', label: '🌐 Context API', description: 'Global State Management' },
     { id: 'useReducer', label: '🎛️ useReducer', description: 'Complex State Logic' },
     { id: 'useEffect', label: '🔄 useEffect', description: 'Side Effects & Lifecycle' },
-    { id: 'refs', label: '🔗 Refs', description: 'DOM References' }
+    { id: 'refs', label: '🔗 Refs', description: 'DOM References' },
+    { id: 'concurrent', label: '⚡ 并发模式', description: 'Concurrent Features' }
   ];
 
   return (

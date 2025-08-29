@@ -1,8 +1,23 @@
 import React from 'react';
 import BasicRefExamples from './BasicRefExamples';
 import ForwardRefExamples from './ForwardRefExamples';
+import UseRefPrinciplesExample from './UseRefPrinciplesExample';
+import UseStateVsUseRefComparison from './UseStateVsUseRefComparison';
+import RenderCycleDemo from './RenderCycleDemo';
+import { useState } from 'react';
 
 const RefsExample: React.FC = () => {
+  const [logs, setLogs] = useState<string[]>([]);
+
+  // 添加日志
+  const addLog = (message: string) => {
+    setLogs(prev => [...prev, `${new Date().toLocaleTimeString()}: ${message}`]);
+  };
+
+  // 清空日志
+  const clearLogs = () => {
+    setLogs([]);
+  };
   return (
     <div>
       <div className="difference">
@@ -19,6 +34,66 @@ const RefsExample: React.FC = () => {
 
       <BasicRefExamples />
       <ForwardRefExamples />
+      
+      {/* 新增的 useRef 原理示例 */}
+      <UseRefPrinciplesExample onLog={addLog} />
+      <UseStateVsUseRefComparison onLog={addLog} />
+      <RenderCycleDemo onLog={addLog} />
+      
+      {/* 日志显示区域 */}
+      <div style={{
+        background: '#f8f9fa',
+        border: '1px solid #dee2e6',
+        borderRadius: '8px',
+        padding: '15px',
+        marginTop: '20px'
+      }}>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          marginBottom: '10px' 
+        }}>
+          <h4 style={{ margin: 0, color: '#495057' }}>📋 操作日志</h4>
+          <button 
+            onClick={clearLogs}
+            className="button"
+            style={{ 
+              fontSize: '12px', 
+              padding: '4px 8px',
+              backgroundColor: '#6c757d'
+            }}
+          >
+            🧹 清空日志
+          </button>
+        </div>
+        <div style={{
+          maxHeight: '200px',
+          overflowY: 'auto',
+          background: 'white',
+          border: '1px solid #ddd',
+          borderRadius: '3px',
+          padding: '8px'
+        }}>
+          {logs.length === 0 ? (
+            <p style={{ margin: 0, color: '#6c757d', fontStyle: 'italic' }}>
+              暂无日志记录
+            </p>
+          ) : (
+            logs.map((log, index) => (
+              <div key={index} style={{ 
+                fontSize: '12px', 
+                color: '#495057',
+                borderBottom: index < logs.length - 1 ? '1px solid #f0f0f0' : 'none',
+                paddingBottom: '2px',
+                marginBottom: '2px'
+              }}>
+                {log}
+              </div>
+            ))
+          )}
+        </div>
+      </div>
 
       <div style={{
         background: '#f0f8f0',

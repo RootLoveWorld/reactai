@@ -23,6 +23,7 @@ export * from './reducer';
 // ============================================================================
 export * from './effects';
 export * from './refs';
+export * from './concurrent';
 
 // ============================================================================
 // Re-exports by Category (for convenience)
@@ -74,8 +75,20 @@ export {
 export {
   RefsExample,
   BasicRefExamples,
-  ForwardRefExamples
+  ForwardRefExamples,
+  UseRefPrinciplesExample,
+  UseStateVsUseRefComparison,
+  RenderCycleDemo
 } from './refs';
+
+// Concurrent Features
+export {
+  ConcurrentExample,
+  TransitionExample,
+  DeferredValueExample,
+  SuspenseExample,
+  ConcurrentRenderingExample
+} from './concurrent';
 
 // Navigation
 export {
