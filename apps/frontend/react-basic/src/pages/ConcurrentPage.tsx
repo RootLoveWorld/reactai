@@ -283,8 +283,7 @@ function App() {
         textAlign: 'center'
       }}>
         <h2 style={{ margin: '0 0 15px 0', color: '#0d47a1' }}>🎉 总结</h2>
-        <p style={{ 
-          margin: '0', 
+        <p style={{
           color: '#1565c0', 
           fontSize: '18px', 
           lineHeight: '1.6',

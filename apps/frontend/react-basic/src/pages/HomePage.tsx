@@ -32,6 +32,10 @@ const HomePage: React.FC = () => {
           <li><strong>useReducer Hook</strong> - 掌握复杂状态逻辑的管理方式</li>
           <li><strong>useEffect Hook</strong> - 学习副作用管理和组件生命周期</li>
           <li><strong>Refs</strong> - 学习 DOM 引用和命令式操作技巧</li>
+          <li><strong>Tailwind CSS</strong> - 学习实用优先的 CSS 框架</li>
+          <li><strong>Redux</strong> - 掌握全局状态管理方案</li>
+          <li><strong>Redux-Thunk</strong> - 学习异步 Action 处理</li>
+          <li><strong>Redux-Saga</strong> - 掌握复杂副作用处理</li>
         </ul>
       </div>
 
@@ -136,6 +140,62 @@ const HomePage: React.FC = () => {
           <h4 style={{ color: '#17a2b8', margin: '0 0 10px 0' }}>Refs</h4>
           <p style={{ color: '#666', margin: 0, fontSize: '14px' }}>
             DOM 引用和命令式操作，实现聚焦、滚动等直接 DOM 控制
+          </p>
+        </div>
+
+        <div style={{
+          background: 'white',
+          border: '2px solid #8b5cf6',
+          borderRadius: '8px',
+          padding: '20px',
+          textAlign: 'center'
+        }}>
+          <div style={{ fontSize: '48px', marginBottom: '15px' }}>🎨</div>
+          <h4 style={{ color: '#8b5cf6', margin: '0 0 10px 0' }}>Tailwind CSS</h4>
+          <p style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+            实用优先的 CSS 框架，快速构建自定义用户界面
+          </p>
+        </div>
+
+        <div style={{
+          background: 'white',
+          border: '2px solid #ef4444',
+          borderRadius: '8px',
+          padding: '20px',
+          textAlign: 'center'
+        }}>
+          <div style={{ fontSize: '48px', marginBottom: '15px' }}>🔄</div>
+          <h4 style={{ color: '#ef4444', margin: '0 0 10px 0' }}>Redux</h4>
+          <p style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+            可预测的状态管理方案，集中管理应用状态
+          </p>
+        </div>
+
+        <div style={{
+          background: 'white',
+          border: '2px solid #f59e0b',
+          borderRadius: '8px',
+          padding: '20px',
+          textAlign: 'center'
+        }}>
+          <div style={{ fontSize: '48px', marginBottom: '15px' }}>⚡</div>
+          <h4 style={{ color: '#f59e0b', margin: '0 0 10px 0' }}>Redux-Thunk</h4>
+          <p style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+            Redux 中间件，处理异步操作和复杂业务逻辑
+          </p>
+        </div>
+
+        <div style={{
+          background: 'white',
+          border: '2px solid #ec4899',
+          borderRadius: '8px',
+          padding: '20px',
+          textAlign: 'center'
+        }}>
+          <div style={{ fontSize: '48px', marginBottom: '15px' }}>🐉</div>
+          <h4 style={{ color: '#ec4899', margin: '0 0 10px 0' }}>Redux-Saga</h4>
+          <p style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+            强大的副作用处理方案，使用 Generator 函数管理复杂流程
           </p>
         </div>
       </div>

@@ -15,7 +15,11 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage, onPageChange }) =>
     { id: 'useReducer', label: '🎛️ useReducer', description: 'Complex State Logic' },
     { id: 'useEffect', label: '🔄 useEffect', description: 'Side Effects & Lifecycle' },
     { id: 'refs', label: '🔗 Refs', description: 'DOM References' },
-    { id: 'concurrent', label: '⚡ 并发模式', description: 'Concurrent Features' }
+    { id: 'concurrent', label: '⚡ 并发模式', description: 'Concurrent Features' },
+    { id: 'tailwind', label: '🎨 Tailwind CSS', description: 'Styling with Tailwind' },
+    { id: 'redux', label: '🔄 Redux', description: 'State Management' },
+    { id: 'thunk', label: '⚡ Redux-Thunk', description: 'Async Actions' },
+    { id: 'saga', label: '🐉 Redux-Saga', description: 'Side Effects Handling' }
   ];
 
   return (
