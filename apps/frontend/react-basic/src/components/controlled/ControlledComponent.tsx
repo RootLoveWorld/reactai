@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const ControlledComponent: React.FC = () => {
   // State to manage form data
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = React.useState({
     name: '',
     email: '',
     message: ''

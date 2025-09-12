@@ -15,6 +15,7 @@ import TailwindPage from './pages/TailwindPage'
 import ReduxPage from './pages/ReduxPage'
 import ThunkPage from './pages/ThunkPage'
 import SagaPage from './pages/SagaPage'
+import MiraclePage from './pages/MiraclePage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -54,6 +55,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="app">
+                <MiraclePage/>
         <Navigation 
           currentPage={currentPage} 
           onPageChange={setCurrentPage} 
@@ -62,6 +64,8 @@ function App() {
         <div className="app-content">
           {renderCurrentPage()}
         </div>
+
+
       </div>
     </Provider>
   )
