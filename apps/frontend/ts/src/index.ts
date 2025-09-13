@@ -10,7 +10,7 @@ type Animal = {
 }
 
 // 面向对象编程
-interface student extends Person {
+interface Student extends Person {
     id:number;
 }
 
@@ -21,33 +21,13 @@ interface student extends Person {
  // 条件类型 Conditional Types
 
 // 面向协议编程
-type Dog = Animal & { age: number }
+type Dog = Animal & { age: number };
 
 // 协议
-type IdProtocal = { id: number }
-type NameProtocal = { name: string }
+type IdProtocol = { id: number };
+type NameProtocol = { name: string };
 
-type InfoProtocal = IdProtocal & NameProtocal
-
-
-
-
-
-
-
-
-
-// interface 与 type的区别
-// 拓展性
-// 声明合并方式
-// 使用范围
-
-// 隔离
-namespace A{
-
-}
-
-
+type InfoProtocol = IdProtocol & NameProtocol;
 
 // unknown 与 never
 
@@ -55,22 +35,19 @@ namespace A{
 // 优先使用 typeof/instanceof 处理简单场景
 // 对复杂对象结构使用自定义守卫函数
 
+const call = (a:string, b:number) => {
+  return 'Miracle';
+};
 
+type FunctionReturnType<T> = T extends () => infer E ? E : never;
 
-const call = (a:string,b:number)=>{
-  return 'Miracle'
-}
+type FParamsType<T> = T extends (...args: any[]) => any ? Parameters<T> : never;
 
-type FunctionReturnType<T> = T extends ()=> infer E ? E :never;
+type FParamsType1<T> = T extends (...args: infer P) => any ? P : never;
 
+// Using the types to avoid unused variable warnings
+type ReturnTypeExample = FunctionReturnType<typeof call>;
+type ParamsTypeExample = FParamsType<typeof call>;
+type ParamsType1Example = FParamsType1<typeof call>;
 
-type FParamsType<T> = T extends (...args: any[]) => any ? Parameters<T> :never;
-
-
-type FParamsType1<T> = T extends (...args: infer P) => any ? P :never;
-
-type ReturnType = FunctionReturnType<typeof call>
-
-type ParamsType = FParamsType<typeof call>
-
-type ParamsType1 = FParamsType1<typeof call>
+console.log("Index.ts loaded");

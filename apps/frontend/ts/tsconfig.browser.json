@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "es2020",
+    "target": "es2020",
+    "lib": ["es2020", "dom"],
+    "types": [],
+    "outDir": "./dist",
+    "verbatimModuleSyntax": false,
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": ["src/browser-examples.js"]
+}

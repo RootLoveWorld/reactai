@@ -1,17 +1,33 @@
 {
-  "name": "ts",
+  "name": "ts-learning",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "TypeScript learning environment",
+  "main": "dist/index.js",
+  "bin": {
+    "ts-runner": "./dist/runner.js"
+  },
   "scripts": {
-    "compile":"tsc",
-    "type-check":"tsc --noEmit",
+    "compile": "tsc",
+    "compile:watch": "tsc --watch",
+    "compile:browser": "tsc --project tsconfig.browser.json",
+    "compile:js": "cp src/browser-examples.js dist/browser-examples.js",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "build:browser": "npm run clean && tsc && tsc --project tsconfig.browser.json",
+    "build:all": "npm run clean && tsc && tsc --project tsconfig.browser.json && cp src/browser-examples.js dist/browser-examples.js",
+    "dev": "tsc --watch",
+    "start": "npm run build && node dist/index.js",
+    "run-examples": "npm run build && node dist/runner.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "typescript":"5.9.2"
+    "@types/node": "^20.0.0",
+    "typescript": "5.9.2",
+    "rimraf": "^5.0.0"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["typescript", "learning"],
+  "author": "TypeScript Learner",
   "license": "ISC"
 }

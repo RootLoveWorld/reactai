@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test Browser Examples</title>
+</head>
+<body>
+    <h1>Test Browser Examples</h1>
+    
+    <button onclick="console.log(runBasicExample())">Test Basic Example</button>
+    <button onclick="console.log(runClassExample())">Test Class Example</button>
+    <button onclick="console.log(runInterfaceExample())">Test Interface Example</button>
+    <button onclick="console.log(runGenericExample())">Test Generic Example</button>
+    
+    <div id="output"></div>
+
+    <!-- Load the compiled JavaScript file -->
+    <script src="./../dist/browser-examples.js"></script>
+    
+    <script>
+        // Test if functions are available
+        setTimeout(() => {
+            if (typeof runBasicExample === 'function') {
+                console.log('✅ runBasicExample is available');
+            } else {
+                console.log('❌ runBasicExample is not available');
+            }
+            
+            if (typeof runClassExample === 'function') {
+                console.log('✅ runClassExample is available');
+            } else {
+                console.log('❌ runClassExample is not available');
+            }
+            
+            if (typeof runInterfaceExample === 'function') {
+                console.log('✅ runInterfaceExample is available');
+            } else {
+                console.log('❌ runInterfaceExample is not available');
+            }
+            
+            if (typeof runGenericExample === 'function') {
+                console.log('✅ runGenericExample is available');
+            } else {
+                console.log('❌ runGenericExample is not available');
+            }
+        }, 100);
+    </script>
+</body>
+</html>
